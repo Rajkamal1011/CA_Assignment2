@@ -46,8 +46,10 @@ data/16384.in: data/generate
 	./data/generate 16384 
 
 run: data/3.in data/5.in data/7.in data/9.in data/11.in data/13.in data/64.in data/4096.in data/8192.in data/16384.in dilated_conv
-	./dilated_conv -i data/4096.in -k data/3.in
-	./dilated_conv -i data/4096.in -k data/5.in
+	./dilated_conv -i data/128.in -k data/5.in
+#	./dilated_conv -i data/4096.in -k data/128.in
+	./dilated_conv -i data/4096.in -k data/3.in 
+	./dilated_conv -i data/4096.in -k data/5.in 
 	./dilated_conv -i data/4096.in -k data/7.in
 	./dilated_conv -i data/4096.in -k data/9.in
 	./dilated_conv -i data/4096.in -k data/11.in
@@ -59,9 +61,14 @@ run: data/3.in data/5.in data/7.in data/9.in data/11.in data/13.in data/64.in da
 	./dilated_conv -i data/8192.in -k data/9.in
 	./dilated_conv -i data/8192.in -k data/11.in
 	./dilated_conv -i data/8192.in -k data/13.in
-	./dilated_conv -i data/8192.in -k data/64.in
+	./dilated_conv -i data/16384.in -k data/3.in
+	./dilated_conv -i data/16384.in -k data/5.in
+	./dilated_conv -i data/16384.in -k data/7.in
+	./dilated_conv -i data/16384.in -k data/9.in
+#	./dilated_conv -i data/8192.in -k data/64.in
 	./dilated_conv -i data/16384.in -k data/11.in
 	./dilated_conv -i data/16384.in -k data/13.in
+	
 
 clean:
 	rm dilated_conv

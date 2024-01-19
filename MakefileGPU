@@ -1,0 +1,70 @@
+sim: data/64.in data/128.in dilated_conv_sim
+
+server: data/128.in dilated_conv_server
+
+dilated_conv_server: main.cu header/gpu_thread.h
+	nvcc --std=c++11 main.cu -o dilated_conv_server -I ./header --verbose
+
+dilated_conv_sim: main.cu header/gpu_thread.h
+	nvcc --std=c++11 main.cu -o dilated_conv -I ./header --cudart shared -gencode arch=compute_70,code=compute_70 --verbose
+
+data/generate: data/generate.cpp
+	g++ ./data/generate.cpp -o ./data/generate
+
+data/64.in: data/generate
+	./data/generate 64
+
+data/128.in: data/generate
+	./data/generate 128
+
+run_sim: data/128.in dilated_conv_sim
+	./dilated_conv_sim -i data/128.in -k data/64.in
+	
+run_server: data/128.in dilated_conv_server
+#	./dilated_conv -i data/128.in -k data/5.in
+#	./dilated_conv -i data/4096.in -k data/128.in
+#	./dilated_conv -i data/4096.in -k data/3.in 
+#	./dilated_conv -i data/4096.in -k data/5.in 
+#	./dilated_conv -i data/4096.in -k data/7.in
+#	./dilated_conv -i data/4096.in -k data/9.in
+#	./dilated_conv -i data/4096.in -k data/11.in
+#	./dilated_conv -i data/4096.in -k data/13.in
+#	./dilated_conv -i data/4096.in -k data/64.in
+#	./dilated_conv -i data/8192.in -k data/3.in
+#	./dilated_conv -i data/8192.in -k data/5.in
+#	./dilated_conv -i data/8192.in -k data/7.in
+#	./dilated_conv -i data/8192.in -k data/9.in
+#	./dilated_conv -i data/8192.in -k data/11.in
+#	./dilated_conv -i data/8192.in -k data/13.in
+#	./dilated_conv -i data/16384.in -k data/3.in
+#	./dilated_conv -i data/16384.in -k data/5.in
+#	./dilated_conv -i data/16384.in -k data/7.in
+#	./dilated_conv -i data/16384.in -k data/9.in
+#	./dilated_conv -i data/8192.in -k data/64.in
+#	./dilated_conv -i data/16384.in -k data/11.in
+#	./dilated_conv -i data/16384.in -k data/13.in
+#	./dilated_conv_server -i data/256_32.in -k data/13.in
+#	./dilated_conv_server -i data/128.in -k data/64.in
+#	./dilated_conv_server -i data/256.in -k data/64.in
+#	./dilated_conv_server -i data/2048.in -k data/64.in
+#	./dilated_conv_server -i data/256_32.in -k data/64.in
+#	./dilated_conv -i data/128.in -k data/5.in
+	./dilated_conv -i data/4096.in -k data/9.in
+	./dilated_conv -i data/4096.in -k data/11.in
+	./dilated_conv -i data/4096.in -k data/13.in
+	./dilated_conv -i data/4096.in -k data/64.in
+#	./dilated_conv -i data/4096.in -k data/128.in
+	./dilated_conv -i data/8192.in -k data/9.in
+	./dilated_conv -i data/8192.in -k data/11.in
+	./dilated_conv -i data/8192.in -k data/13.in
+	./dilated_conv -i data/8192.in -k data/64.in
+#	./dilated_conv -i data/8192.in -k data/128.in
+	./dilated_conv -i data/16384.in -k data/9.in
+	./dilated_conv -i data/16384.in -k data/11.in
+	./dilated_conv -i data/16384.in -k data/13.in
+	./dilated_conv -i data/16384.in -k data/64.in
+#	./dilated_conv -i data/16384.in -k data/128.in
+	
+
+clean:
+	rm -f dilated_conv_sim dilated_conv_server

@@ -1,0 +1,16 @@
+# started on Thu Nov  9 00:24:47 2023
+
+
+ Performance counter stats for './dilated_conv -i ./data/4096.in -k data/13.in' (30 runs):
+
+ 2,42,12,79,41,718      L1-dcache-loads                                                         ( +-  0.00% )  (49.99%)
+    2,43,09,99,792      L1-dcache-load-misses            #    1.00% of all L1-dcache accesses   ( +-  0.02% )  (50.00%)
+         74,55,567      LLC-loads                                                               ( +-  0.80% )  (50.01%)
+          8,34,979      LLC-load-misses                  #   10.91% of all LL-cache accesses    ( +-  0.17% )  (50.01%)
+          4,63,863      LLC-stores                                                              ( +-  0.62% )  (25.00%)
+          2,40,051      LLC-store-misses                                                        ( +-  0.44% )  (24.99%)
+   11,59,56,38,924      branch-loads                                                            ( +-  0.01% )  (37.49%)
+       4,29,55,758      branch-load-misses                                                      ( +-  0.01% )  (49.99%)
+
+          57.90713 +- 0.00238 seconds time elapsed  ( +-  0.00% )
+
