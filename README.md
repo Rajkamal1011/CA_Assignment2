@@ -1,5 +1,5 @@
 # HPCA Assignment
-In this assignment, your task is to optimize the problem of “Dilated Convolution (DC)” which involves an input matrix and a kernel matrix. The sample algorithm is depicted below using an animation.
+In this assignment, we are trying to optimize the problem of “Dilated Convolution (DC)” which involves an input matrix and a kernel matrix. The sample algorithm is depicted below using an animation.
 
 ### Input:  
 
